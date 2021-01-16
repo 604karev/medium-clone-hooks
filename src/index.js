@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom'
-import Routes from 'pages/routes'
-import TopBar from 'components/TopBar'
+import Routes from './pages/routes'
+import TopBar from './components/TopBar'
 
 const App = () => {
 

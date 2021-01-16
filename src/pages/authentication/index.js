@@ -1,12 +1,16 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import axios from 'axios'
+import useFetch from "../../hooks/useFetch";
 
 const Authentication = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [{response, isLoading, error}, doFetch] = useFetch('someurl');
+
+    console.log(response, isLoading, error, doFetch);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -31,12 +35,12 @@ const Authentication = () => {
                 }
             )
                 .then(res => {
-                        console.log(`dsadsda`,res);
+                        console.log(`dsadsda`, res);
                         setIsSubmitted(false)
                     }
                 )
                 .catch(error => {
-                    console.log(`some`,error);
+                    console.log(`some`, error);
                     setIsSubmitted(false)
                 })
         }
