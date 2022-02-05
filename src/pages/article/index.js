@@ -1,8 +1,12 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
-const Article = () => (
-    <div>
-        Article
-    </div>
-);
+const Article = () => {
+    const params = useParams()
+    return (
+        <div>
+            Article
+        </div>
+    )
+};
 export default Article

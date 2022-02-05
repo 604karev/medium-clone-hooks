@@ -1,18 +1,17 @@
-
 import React, { useEffect, useState, useContext } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFetch } from 'hooks/useFetch'
 import { useLocalStorage } from 'hooks/useLocalStorage'
 import { BackEndErrorMessages } from "components/backendErrorMessages";
 import { CurrentUserContext } from "contexts/currentUser";
 
 
-const Authentication = props => {
+const Authentication = ({ isLogin }) => {
+    let navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
     const [isResponse, setIsResponse] = useState(false)
-    const isLogin = props.location.pathname === '/login';
     const urlApi = isLogin ? '/users/login' : '/users';
     const pageTitle = isLogin ? 'Sign In' : 'Sign Up';
     const descriptionLink = isLogin ? '/register' : '/login'
@@ -21,7 +20,7 @@ const Authentication = props => {
     const [, setToken] = useLocalStorage('token')
     const [userContext, setUserContext] = useContext(CurrentUserContext)
 
-    console.log(userContext)
+    console.log(userContext, isLogin)
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -46,9 +45,16 @@ const Authentication = props => {
             isLoading: false,
             currentUser: response.user
         }))
+
     }, [response, setToken, setUserContext])
 
-    if (isResponse) return <Redirect to='/' />
+    useEffect(() => {
+        if (isResponse) {
+            return navigate("/");
+        }
+    }, [isResponse])
+
+
 
     return (
         <div className="auth-page">
