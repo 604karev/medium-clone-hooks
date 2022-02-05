@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios";
+import { useLocalStorage } from "./useLocalStorage";
 
 export const useFetch = (url) => {
     const baseUrl = 'https://conduit.productionready.io/api';
@@ -7,7 +8,9 @@ export const useFetch = (url) => {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
     const [options, setOptions] = useState({});
+    const [token] = useLocalStorage('token');
 
+    
 
     const doFetch = (options = {}) => {
         setOptions(prevSate => ({ ...prevSate, ...options }));
@@ -15,10 +18,20 @@ export const useFetch = (url) => {
     }
 
     useEffect(() => {
+        const requestOptions = {
+            ...options,
+            ...{
+                headers: {
+                    authorization: token ? `Token ${token}` : ''
+
+                }
+            }
+        }
+        console.log(requestOptions)
         if (!isSubmitting) {
             return
         }
-        axios(baseUrl + url, options)
+        axios(baseUrl + url, requestOptions)
             .then(res => {
                 console.log(res)
                 setIsSubmitting(false)

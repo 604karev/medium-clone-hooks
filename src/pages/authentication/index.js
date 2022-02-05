@@ -20,7 +20,7 @@ const Authentication = ({ isLogin }) => {
     const [, setToken] = useLocalStorage('token')
     const [userContext, setUserContext] = useContext(CurrentUserContext)
 
-    console.log(userContext, isLogin)
+    console.log(userContext)
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -52,7 +52,7 @@ const Authentication = ({ isLogin }) => {
         if (isResponse) {
             return navigate("/");
         }
-    }, [isResponse])
+    }, [isResponse, navigate])
 
 
 

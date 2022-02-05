@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import TopBar from 'components/topBar'
 import { CurrentUserProvider } from 'contexts/currentUser';
 import Router from 'pages/routes'
+import { CurrentUserChecker } from 'components/currentUserChecker';
 
 
 
@@ -12,10 +13,12 @@ const App = () => {
 
     return (
         <CurrentUserProvider>
-            <BrowserRouter>
-                <TopBar />
-                <Router />
-            </BrowserRouter>
+            <CurrentUserChecker>
+                <BrowserRouter>
+                    <TopBar />
+                    <Router />
+                </BrowserRouter>
+            </CurrentUserChecker>
         </CurrentUserProvider>
     )
 };

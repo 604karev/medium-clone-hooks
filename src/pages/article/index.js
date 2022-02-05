@@ -5,7 +5,7 @@ const Article = () => {
     const params = useParams()
     return (
         <div>
-            Article
+            Article{params}
         </div>
     )
 };
