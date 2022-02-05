@@ -6,37 +6,37 @@ import { useContext, useEffect } from 'react'
 
 export const CurrentUserChecker = ({ children }) => {
     const [{ response }, doFetch] = useFetch('/user');
-    const [, setContextState] = useContext(CurrentUserContext)
+    const [, setUserContext] = useContext(CurrentUserContext)
     const [token] = useLocalStorage('token')
 
 
     useEffect(() => {
         if (!token) {
-            setContextState(state => ({
+            setUserContext(state => ({
                 ...state,
                 isLoggedIn: false
             }))
             return
         }
         doFetch()
-        setContextState(state => ({
+        setUserContext(state => ({
             ...state,
             isLoading: true
         }))
-    }, [])
+    }, [setUserContext, token, doFetch])
 
     useEffect(() => {
         if (!response) {
             return
         }
-        setContextState(state => ({
+        setUserContext(state => ({
             ...state,
             isLoggedIn: true,
             isLoading: false,
             currentUser: response.user
         }))
 
-    }, [response])
+    }, [response, setUserContext])
 
 
 

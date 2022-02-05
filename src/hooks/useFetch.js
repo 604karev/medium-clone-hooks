@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import axios from "axios";
 import { useLocalStorage } from "./useLocalStorage";
 
@@ -10,12 +10,12 @@ export const useFetch = (url) => {
     const [options, setOptions] = useState({});
     const [token] = useLocalStorage('token');
 
-    
 
-    const doFetch = (options = {}) => {
+
+    const doFetch = useCallback((options = {}) => {
         setOptions(prevSate => ({ ...prevSate, ...options }));
         setIsSubmitting(true);
-    }
+    }, [])
 
     useEffect(() => {
         const requestOptions = {
@@ -27,22 +27,19 @@ export const useFetch = (url) => {
                 }
             }
         }
-        console.log(requestOptions)
         if (!isSubmitting) {
             return
         }
         axios(baseUrl + url, requestOptions)
-            .then(res => {
-                console.log(res)
+            .then(res => {              
                 setIsSubmitting(false)
                 setResponse(res.data)
             })
-            .catch(error => {
-                console.log(error)
+            .catch(error => {                
                 setIsSubmitting(false)
                 setError(error.response.data)
             })
-    }, [isSubmitting, url, options])
+    }, [isSubmitting, url, options, token])
 
     return [{ isSubmitting, response, error }, doFetch]
 

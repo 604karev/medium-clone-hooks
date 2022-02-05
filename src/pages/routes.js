@@ -10,7 +10,9 @@ const Router = () => (
         <Route path='/' element={<GlobalFeed />} />
         <Route path='/login' element={<Authentication isLogin={true} />} />
         <Route path='/register' element={<Authentication />} />
-        <Route path='/article/:slug' element={<Article />} />
+        <Route path='/article' element={<Article />} >
+            <Route path=':slug' element={<Article />} />
+        </Route>
     </Routes>
 )
 export default Router
