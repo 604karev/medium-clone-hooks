@@ -16,7 +16,7 @@ const Authentication = ({ isLogin }) => {
     const pageTitle = isLogin ? 'Sign In' : 'Sign Up';
     const descriptionLink = isLogin ? '/register' : '/login'
     const descriptionText = isLogin ? 'Need an account?' : 'Have an account?'
-    const [{ response, isSubmitting, error }, doFetch] = useFetch(urlApi);
+    const [{ response, isLoading, error }, doFetch] = useFetch(urlApi);
     const [, setToken] = useLocalStorage('token');
     const [, setUserContext] = useContext(CurrentUserContext);
 
@@ -94,7 +94,7 @@ const Authentication = ({ isLogin }) => {
                                         onChange={({ target: { value } }) => setPassword(value)}
                                     />
                                 </fieldset>
-                                <button disabled={isSubmitting} className=" btn btn-primary btn-lg pull-xs-right offset-lg-4">{pageTitle}</button>
+                                <button disabled={isLoading} className=" btn btn-primary btn-lg pull-xs-right offset-lg-4">{pageTitle}</button>
                             </fieldset>
                         </form>
                     </div>
