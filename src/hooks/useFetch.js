@@ -44,6 +44,6 @@ export const useFetch = (url) => {
             })
     }, [isLoading, url, options, token])
 
-    return [{ isSubmitting: isLoading, response, error }, doFetch]
+    return [{isLoading, response, error }, doFetch]
 
 }
