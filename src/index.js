@@ -5,6 +5,8 @@ import TopBar from 'components/topBar'
 import { CurrentUserProvider } from 'contexts/currentUser';
 import Router from 'pages/routes'
 import { CurrentUserChecker } from 'components/currentUserChecker';
+import './main.css';
+import './new.css';
 
 
 

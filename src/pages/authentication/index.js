@@ -42,7 +42,6 @@ const Authentication = ({ isLogin }) => {
         setUserContext(state => ({
             ...state,
             isLoggedIn: true,
-            isLoading: false,
             currentUser: response.user
         }))
 
