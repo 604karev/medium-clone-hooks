@@ -17,9 +17,8 @@ const Authentication = ({ isLogin }) => {
     const descriptionLink = isLogin ? '/register' : '/login'
     const descriptionText = isLogin ? 'Need an account?' : 'Have an account?'
     const [{ response, isSubmitting, error }, doFetch] = useFetch(urlApi);
-    const [, setToken] = useLocalStorage('token')
-    const [, setUserContext] = useContext(CurrentUserContext)
-
+    const [, setToken] = useLocalStorage('token');
+    const [, setUserContext] = useContext(CurrentUserContext);
 
 
     const handleSubmit = e => {

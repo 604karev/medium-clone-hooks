@@ -38,8 +38,6 @@ export const CurrentUserChecker = ({ children }) => {
 
     }, [response, setUserContext])
 
-
-
     return children
 
 }
