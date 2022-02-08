@@ -5,6 +5,7 @@ import Article from "./article";
 import Authentication from './authentication'
 
 
+
 const Router = () => (
     <Routes>
         <Route path='/' element={<GlobalFeed />} />
