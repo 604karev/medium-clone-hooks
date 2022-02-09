@@ -12,7 +12,7 @@ import FeedToggler from "components/feedToggler";
 
 
 
-const GlobalFeed = ({ yourFeed }) => {
+const GlobalFeed = () => {
     const { search, pathname } = useLocation();
     const { tag } = useParams()
     const { currentPage, offset } = getPaginator(search)
@@ -22,13 +22,13 @@ const GlobalFeed = ({ yourFeed }) => {
         tag
     })
     const staticUrl = '/articles'
-    const feedUrl = yourFeed ? `${staticUrl}/feed?${feedParams}` : `/${staticUrl}?${feedParams}`;
+    const feedUrl = pathname === '/feed' ? `${staticUrl}/feed?${feedParams}` : `/${staticUrl}?${feedParams}`;
     const [{ isLoading, response, error }, doFetch] = useFetch(feedUrl);
 
 
     useEffect(() => {
         doFetch()
-    }, [doFetch, currentPage, tag, yourFeed, error])
+    }, [doFetch, currentPage, tag, error, pathname])
 
     return (
         <div className=" home-page">

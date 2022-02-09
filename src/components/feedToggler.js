@@ -6,8 +6,8 @@ const FeedToggler = ({ tagName }) => {
     const [{ isLoggedIn }] = useContext(CurrentUserContext)
     return (
         <ul className="nav nav-pills outlene-active">
-            {isLoggedIn &&
-                (<li className="nav-item">
+            {isLoggedIn && (
+                <li className="nav-item">
                     <NavLink className='nav-link' to='/feed'>
                         Your feed
                     </NavLink>
@@ -17,14 +17,14 @@ const FeedToggler = ({ tagName }) => {
                     Global Feed
                 </NavLink>
             </li>
-            {tagName &&
-                (<li className="nav-item">
+            {tagName && (
+                <li className="nav-item">
                     <NavLink className='nav-link' to={`/tags/${tagName}`}>
                         <i className="ion-pound" />&nbsp;
                         {tagName}
                     </NavLink>
                 </li>
-                )}
+            )}
         </ul>
     )
 }

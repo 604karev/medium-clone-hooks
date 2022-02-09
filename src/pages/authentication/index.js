@@ -1,24 +1,27 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useFetch } from 'hooks/useFetch'
 import { useLocalStorage } from 'hooks/useLocalStorage'
 import { BackEndErrorMessages } from "components/backendErrorMessages";
 import { CurrentUserContext } from "contexts/currentUser";
 
 
-const Authentication = ({ isLogin }) => {
+const Authentication = () => {
     let navigate = useNavigate();
+    const { pathname } = useLocation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
     const [isResponse, setIsResponse] = useState(false)
+    const isLogin = pathname === '/login'
     const urlApi = isLogin ? '/users/login' : '/users';
     const pageTitle = isLogin ? 'Sign In' : 'Sign Up';
     const descriptionLink = isLogin ? '/register' : '/login'
     const descriptionText = isLogin ? 'Need an account?' : 'Have an account?'
     const [{ response, isLoading, error }, doFetch] = useFetch(urlApi);
     const [, setToken] = useLocalStorage('token');
-    const [, setUserContext] = useContext(CurrentUserContext);
+    const [, setUserContext] = useContext(CurrentUserContext);    
+    
 
 
     const handleSubmit = e => {
