@@ -3,7 +3,7 @@ import { useFetch } from "hooks/useFetch";
 import { Loading } from "components/loading";
 import Feed from "components/feed";
 import Pagination from "components/pagination";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { getPaginator, limit } from "utils";
 import { stringify } from "query-string";
 import PopularTags from "components/popularTags";
@@ -12,19 +12,23 @@ import FeedToggler from "components/feedToggler";
 
 
 
-const GlobalFeed = () => {
+const GlobalFeed = ({ yourFeed }) => {
     const { search, pathname } = useLocation();
+    const { tag } = useParams()
     const { currentPage, offset } = getPaginator(search)
-    const stringifiedParams = stringify({
+    const feedParams = stringify({
         limit,
-        offset
+        offset,
+        tag
     })
-    const [{ isLoading, response, error }, doFetch] = useFetch(`/articles?${stringifiedParams}`)
+    const staticUrl = '/articles'
+    const feedUrl = yourFeed ? `${staticUrl}/feed?${feedParams}` : `/${staticUrl}?${feedParams}`;
+    const [{ isLoading, response, error }, doFetch] = useFetch(feedUrl);
 
 
     useEffect(() => {
         doFetch()
-    }, [doFetch, currentPage])
+    }, [doFetch, currentPage, tag, yourFeed, error])
 
     return (
         <div className=" home-page">
@@ -37,8 +41,8 @@ const GlobalFeed = () => {
             <div className="container page">
                 <div className="row">
                     <div className="col-md-9">
-                        <FeedToggler />
-                        {error && <ErrorMsg />}
+                        <FeedToggler tagName={tag} />
+                        {isLoading && error && <ErrorMsg />}
                         {isLoading ? <Loading /> : response && (
                             <>
                                 <Feed articles={response.articles} />
