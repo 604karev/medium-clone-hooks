@@ -30,20 +30,20 @@ export const useFetch = (url) => {
         if (!isLoading) {
             return
         }
-        axios(baseUrl + url, requestOptions)
+        const res = axios(baseUrl + url, requestOptions)
             .then(res => {
                 console.log(res)
                 setIsSubmitting(false)
                 setResponse(res.data)
-
             })
             .catch(error => {
                 setIsSubmitting(false)
                 setError(error.response.data)
 
             })
+        return res
     }, [isLoading, url, options, token])
 
-    return [{isLoading, response, error }, doFetch]
+    return [{ isLoading, response, error }, doFetch]
 
 }
