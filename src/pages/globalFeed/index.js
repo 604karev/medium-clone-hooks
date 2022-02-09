@@ -6,6 +6,8 @@ import Pagination from "components/pagination";
 import { useLocation } from "react-router-dom";
 import { getPaginator, limit } from "utils";
 import { stringify } from "query-string";
+import PopularTags from "components/popularTags";
+import ErrorMsg from "components/error";
 
 
 
@@ -17,7 +19,7 @@ const GlobalFeed = () => {
         offset
     })
     const [{ isLoading, response, error }, doFetch] = useFetch(`/articles?${stringifiedParams}`)
-    
+
 
     useEffect(() => {
         doFetch()
@@ -34,7 +36,7 @@ const GlobalFeed = () => {
             <div className="container page">
                 <div className="row">
                     <div className="col-md-9">
-                        {error && <div>Something went wrong...</div>}
+                        {error && <ErrorMsg />}
                         {isLoading ? <Loading /> : response && (
                             <>
                                 <Feed articles={response.articles} />
@@ -43,7 +45,7 @@ const GlobalFeed = () => {
                         )}
                     </div>
                     <div className="col-md-3">
-                        Popular tags
+                        <PopularTags />
                     </div>
                 </div>
             </div>
