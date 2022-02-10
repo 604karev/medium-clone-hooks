@@ -20,8 +20,8 @@ const Authentication = () => {
     const descriptionText = isLogin ? 'Need an account?' : 'Have an account?'
     const [{ response, isLoading, error }, doFetch] = useFetch(urlApi);
     const [, setToken] = useLocalStorage('token');
-    const [, setUserContext] = useContext(CurrentUserContext);    
-    
+    const [, dispatch] = useContext(CurrentUserContext);
+
 
 
     const handleSubmit = e => {
@@ -41,13 +41,8 @@ const Authentication = () => {
         }
         setToken(response.user.token)
         setIsResponse(true)
-        setUserContext(state => ({
-            ...state,
-            isLoggedIn: true,
-            currentUser: response.user
-        }))
-
-    }, [response, setToken, setUserContext])
+        dispatch({ type: 'SET_AUTORIZED', payload: response.user })
+    }, [response, setToken, dispatch])
 
     useEffect(() => {
         if (isResponse) {

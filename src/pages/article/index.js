@@ -11,19 +11,13 @@ const Article = () => {
     const urlApi = `/articles/${slug}`
     const [{ response, isLoading, error }, doFetch] = useFetch(urlApi)
 
-
-
-
     useEffect(() => {
         doFetch()
     }, [doFetch]);
 
-
-
     return (
         <div className=" article-page">
             <div className="banner">
-
                 {!isLoading && response && (
                     <div className="container">
                         <h1>{response.article.title}</h1>
@@ -51,11 +45,9 @@ const Article = () => {
                                 <TagList tags={response.article.tagList} />
                             </div>
                         </div>
-
                     </div>
                 )}
             </div>
-
         </div>
     )
 };
