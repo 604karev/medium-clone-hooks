@@ -21,7 +21,7 @@ const reducer = (state, action) => {
         case 'SET_UNAUTHORIZED':
             return {
                 ...state,
-                isLoading: false
+                isLoggedIn: false
             }
         default:
             return state
