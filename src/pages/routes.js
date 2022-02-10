@@ -13,7 +13,7 @@ const Router = () => (
             </Route>
             <Route path='feed' element={<GlobalFeed />}/>                    
         </Route>               
-        <Route path='/login' element={<Authentication isLogin={true} />} />
+        <Route path='/login' element={<Authentication />} />
         <Route path='/register' element={<Authentication />} />
         <Route path='/article' element={<Article />} >
             <Route path=':slug' element={<Article />} />

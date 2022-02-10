@@ -7,7 +7,7 @@ import { CurrentUserContext } from "contexts/currentUser";
 
 
 const Authentication = () => {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
     const { pathname } = useLocation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
