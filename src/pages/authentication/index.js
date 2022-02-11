@@ -41,7 +41,7 @@ const Authentication = () => {
         }
         setToken(response.user.token)
         setIsResponse(true)
-        dispatch({ type: 'SET_AUTORIZED', payload: response.user })
+        dispatch({ type: 'SET_AUTHORIZED', payload: response.user })
     }, [response, setToken, dispatch])
 
     useEffect(() => {
