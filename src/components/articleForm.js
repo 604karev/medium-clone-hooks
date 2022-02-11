@@ -1,29 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BackEndErrorMessages } from "./backendErrorMessages";
 
-const ArticleForm = ({ onSubmit, errors, initialValues }) => {
+
+const ArticleForm = ({ onSubmit, error, initialValues }) => {
 
     const [title, setTite] = useState('')
-    const [decription, setDecription] = useState('')
+    const [description, setDescription] = useState('')
     const [body, setBody] = useState('')
     const [tagList, setTagList] = useState('')
+    console.log(initialValues)
 
     const handleSubmit = e => {
         e.preventDefault()
         onSubmit({
             title,
-            decription,
+            description,
             body,
             tagList
         })
     }
+    useEffect(() => {
+        if (!initialValues) {
+            return
+        }
+        setTite(initialValues.title)
+        setDescription(initialValues.description)
+        setBody(initialValues.body)
+        setTagList(initialValues.tagList.join(' '))
+
+    }, [initialValues])
+
 
     return (<div>
         <div className="editor-page">
             <div className="container page">
                 <div className="row">
                     <div className="col-md-10 offset-md-1 col-xs-12">
-                        {/* <BackEndErrorMessages backEndErrors={ } /> */}
+                        {error && <BackEndErrorMessages backEndErrors={error} />}
                         <form onSubmit={handleSubmit}>
                             <fieldset>
                                 <fieldset className=" form-group">
@@ -41,8 +54,8 @@ const ArticleForm = ({ onSubmit, errors, initialValues }) => {
                                         className="form-control form-control-lg"
                                         placeholder="What is article about?"
                                         type="text"
-                                        value={decription}
-                                        onChange={({ target: { value } }) => setDecription(value)}
+                                        value={description}
+                                        onChange={({ target: { value } }) => setDescription(value)}
                                     />
                                 </fieldset>
                                 <fieldset className=" form-group">
