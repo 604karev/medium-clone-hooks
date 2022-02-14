@@ -10,11 +10,12 @@ const EditArticle = () => {
 
     const apiUrl = `/articles/${slug}`;
     const [CurrentUserState] = useContext(CurrentUserContext)
-    const [
-        { response: fetchArticleResponse }
+    const [{
+        response: fetchArticleResponse }
         , doFetchArticle] = useFetch(apiUrl)
-    const [
-        { response: updateArticleResponse, error: updateArticleError },
+    const [{
+        response: updateArticleResponse,
+        error: updateArticleError },
         doUpdateArticle] = useFetch(apiUrl);
     const [initialState, setInitialState] = useState(null)
 
