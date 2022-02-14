@@ -17,9 +17,8 @@ const Router = () => (
         </Route>
         <Route path='/login' element={<Authentication />} />
         <Route path='/register' element={<Authentication />} />
-        <Route path='/article' element={<Article />} >
-            <Route path=':slug' element={<Article />} />
-        </Route>
+        <Route path='/article' element={<GlobalFeed />} />            
+        <Route path='/article/:slug' element={<Article />} />
         <Route path='/article/new' element={<CreateArticle />} />
         <Route path='/article/:slug/edit' element={<EditArticle />} />
     </Routes >
