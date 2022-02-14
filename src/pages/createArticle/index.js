@@ -9,9 +9,8 @@ const CreateArticle = () => {
     const apiUrl = '/articles';
     const [{ response, error }, doFetch] = useFetch(apiUrl)
     const [CurrentUserState] = useContext(CurrentUserContext)
-    console.log(CurrentUserState)
 
-    const initialValues = {
+    const initialState = {
         title: '',
         description: '',
         body: '',
@@ -44,7 +43,7 @@ const CreateArticle = () => {
     return (
         <ArticleForm
             error={(error && error.errors) || {}}
-            initialValues={initialValues}
+            initialState={initialState}
             onSubmit={handleSubmit} />
     )
 }

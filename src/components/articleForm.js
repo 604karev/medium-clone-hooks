@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { BackEndErrorMessages } from "./backendErrorMessages";
 
 
-const ArticleForm = ({ onSubmit, error, initialValues }) => {
+const ArticleForm = ({ onSubmit, error, initialState}) => {
 
     const [title, setTite] = useState('')
     const [description, setDescription] = useState('')
     const [body, setBody] = useState('')
     const [tagList, setTagList] = useState('')
-    console.log(initialValues)
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -20,15 +19,15 @@ const ArticleForm = ({ onSubmit, error, initialValues }) => {
         })
     }
     useEffect(() => {
-        if (!initialValues) {
+        if (!initialState) {
             return
         }
-        setTite(initialValues.title)
-        setDescription(initialValues.description)
-        setBody(initialValues.body)
-        setTagList(initialValues.tagList.join(' '))
+        setTite(initialState.title)
+        setDescription(initialState.description)
+        setBody(initialState.body)
+        setTagList(initialState.tagList.join(' '))
 
-    }, [initialValues])
+    }, [initialState]) 
 
 
     return (<div>

@@ -4,6 +4,7 @@ import GlobalFeed from "./globalFeed";
 import Article from "./article";
 import Authentication from './authentication'
 import CreateArticle from "./createArticle";
+import EditArticle from "./editArticle";
 
 
 const Router = () => (
@@ -20,6 +21,7 @@ const Router = () => (
             <Route path=':slug' element={<Article />} />
         </Route>
         <Route path='/article/new' element={<CreateArticle />} />
+        <Route path='/article/:slug/edit' element={<EditArticle />} />
     </Routes >
 )
 export default Router
