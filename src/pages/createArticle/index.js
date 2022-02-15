@@ -16,6 +16,7 @@ const CreateArticle = () => {
         body: '',
         tagList: []
     }
+    
     const handleSubmit = article => {
         doFetch({
             method: 'post',
@@ -24,6 +25,7 @@ const CreateArticle = () => {
             }
         })
     }
+
     useEffect(() => {
         if (!response) {
             return
@@ -37,8 +39,6 @@ const CreateArticle = () => {
         }        
 
     }, [currentUser, navigate])
-
-
 
     return (
         <ArticleForm

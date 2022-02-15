@@ -4,20 +4,19 @@ import { CurrentUserContext } from "contexts/currentUser";
 import { useFetch } from "hooks/useFetch";
 import { BackEndErrorMessages } from "components/backendErrorMessages";
 import { useLocalStorage } from "hooks/useLocalStorage";
+import { stateSetter } from "utils";
 
 const Settings = () => {
     const navigate = useNavigate();
     const apiUrl = '/user'
-    const [{ currentUser }, dispatch] = useContext(CurrentUserContext)
+    const [{ currentUser, isLoggedIn }, dispatch] = useContext(CurrentUserContext)
     const [{ response, error }, doFetch] = useFetch(apiUrl)
     const [image, setImage] = useState('');
     const [username, setUsername] = useState('');
     const [bio, setBio] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isLogout, setIsLogout] = useState(false)
     const [, setToken] = useLocalStorage('token')
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,17 +36,13 @@ const Settings = () => {
             }
         )
 
-    }
-    const stateSetter = setter => ({ target: { value } }) => setter(value);
-
+    }  
 
     const logout = () => {
         console.log('logout')
         setToken('')
-        dispatch({ type: 'LOGOUT' })   
-        setIsLogout(true)     
+        dispatch({ type: 'LOGOUT' })
     }
-
 
     useEffect(() => {
         if (!currentUser) {
@@ -57,7 +52,6 @@ const Settings = () => {
         setUsername(currentUser.username || '')
         setBio(currentUser.bio || '')
         setEmail(currentUser.email || '')
-
     }, [currentUser])
 
     useEffect(() => {
@@ -69,10 +63,10 @@ const Settings = () => {
     }, [response, dispatch])
 
     useEffect(() => {
-        if (isLogout) {
+        if (isLoggedIn===false) {
             return navigate("/");
         }
-    }, [isLogout, navigate])
+    }, [isLoggedIn, navigate])
 
     return (
         <div className="settings-page">
@@ -136,7 +130,6 @@ const Settings = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

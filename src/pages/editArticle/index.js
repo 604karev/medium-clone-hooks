@@ -7,12 +7,11 @@ import ArticleForm from "components/articleForm";
 const EditArticle = () => {
     const { slug } = useParams();
     const navigate = useNavigate();
-
     const apiUrl = `/articles/${slug}`;
     const [currentUser] = useContext(CurrentUserContext)
     const [{
-        response: fetchArticleResponse }
-        , doFetchArticle] = useFetch(apiUrl)
+        response: fetchArticleResponse },
+        doFetchArticle] = useFetch(apiUrl)
     const [{
         response: updateArticleResponse,
         error: updateArticleError },
@@ -24,7 +23,6 @@ const EditArticle = () => {
             method: 'put',
             data: { article }
         })
-
     }
 
     useEffect(() => {
@@ -41,8 +39,6 @@ const EditArticle = () => {
             body: fetchArticleResponse.article.body,
             tagList: fetchArticleResponse.article.tagList
         })
-
-
     }, [fetchArticleResponse])
 
     useEffect(() => {
@@ -56,7 +52,6 @@ const EditArticle = () => {
         if (currentUser.isLoggedIn === false) {
             return navigate('/')
         }
-
     }, [currentUser, navigate])
 
     return (

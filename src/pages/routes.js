@@ -7,7 +7,6 @@ import CreateArticle from "./createArticle";
 import EditArticle from "./editArticle";
 import Settings from "./settings";
 
-
 const Router = () => (
     <Routes>
         <Route path='/' element={<GlobalFeed />} >

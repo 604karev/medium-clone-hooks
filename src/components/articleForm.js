@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { BackEndErrorMessages } from "./backendErrorMessages";
+import { stateSetter } from "utils";
 
 
-const ArticleForm = ({ onSubmit, error, initialState}) => {
-
+const ArticleForm = ({ onSubmit, error, initialState }) => {
     const [title, setTite] = useState('')
     const [description, setDescription] = useState('')
     const [body, setBody] = useState('')
@@ -18,6 +18,7 @@ const ArticleForm = ({ onSubmit, error, initialState}) => {
             tagList
         })
     }
+
     useEffect(() => {
         if (!initialState) {
             return
@@ -27,8 +28,7 @@ const ArticleForm = ({ onSubmit, error, initialState}) => {
         setBody(initialState.body)
         setTagList(initialState.tagList.join(' '))
 
-    }, [initialState]) 
-
+    }, [initialState])
 
     return (<div>
         <div className="editor-page">
@@ -44,9 +44,8 @@ const ArticleForm = ({ onSubmit, error, initialState}) => {
                                         placeholder="Artile Titile"
                                         type="text"
                                         value={title}
-                                        onChange={({ target: { value } }) => setTite(value)}
+                                        onChange={stateSetter(setTite)}
                                     />
-
                                 </fieldset>
                                 <fieldset className=" form-group">
                                     <input
@@ -54,7 +53,7 @@ const ArticleForm = ({ onSubmit, error, initialState}) => {
                                         placeholder="What is article about?"
                                         type="text"
                                         value={description}
-                                        onChange={({ target: { value } }) => setDescription(value)}
+                                        onChange={stateSetter(setDescription)}
                                     />
                                 </fieldset>
                                 <fieldset className=" form-group">
@@ -64,7 +63,7 @@ const ArticleForm = ({ onSubmit, error, initialState}) => {
                                         placeholder="Write you article (in markdown)"
                                         type="text"
                                         value={body}
-                                        onChange={({ target: { value } }) => setBody(value)} />
+                                        onChange={stateSetter(setBody)} />
                                 </fieldset>
                                 <fieldset className=" form-group">
                                     <input
@@ -72,7 +71,7 @@ const ArticleForm = ({ onSubmit, error, initialState}) => {
                                         placeholder="Enter tags"
                                         type="text"
                                         value={tagList}
-                                        onChange={({ target: { value } }) => setTagList(value)}
+                                        onChange={stateSetter(setTagList)}
                                     />
                                 </fieldset>
                             </fieldset>
@@ -82,10 +81,8 @@ const ArticleForm = ({ onSubmit, error, initialState}) => {
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>)
 }
 export default ArticleForm

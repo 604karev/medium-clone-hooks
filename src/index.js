@@ -8,11 +8,7 @@ import { CurrentUserChecker } from 'components/currentUserChecker';
 import './main.css';
 import './new.css';
 
-
-
-
 const App = () => {
-
     return (
         <CurrentUserProvider>
             <CurrentUserChecker>
@@ -24,7 +20,6 @@ const App = () => {
         </CurrentUserProvider>
     )
 };
-
 
 ReactDOM.render(
     <React.StrictMode>

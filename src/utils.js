@@ -12,3 +12,4 @@ export const getPaginator = search => {
     const offset = currentPage * 10 - limit;
     return { currentPage, offset }
 }
+export const stateSetter = setter => ({ target: { value } }) => setter(value);

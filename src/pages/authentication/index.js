@@ -4,6 +4,7 @@ import { useFetch } from 'hooks/useFetch'
 import { useLocalStorage } from 'hooks/useLocalStorage'
 import { BackEndErrorMessages } from "components/backendErrorMessages";
 import { CurrentUserContext } from "contexts/currentUser";
+import { stateSetter } from "utils";
 
 
 const Authentication = () => {
@@ -12,7 +13,6 @@ const Authentication = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
-    const [isResponse, setIsResponse] = useState(false)
     const isLogin = pathname === '/login'
     const urlApi = isLogin ? '/users/login' : '/users';
     const pageTitle = isLogin ? 'Sign In' : 'Sign Up';
@@ -20,13 +20,10 @@ const Authentication = () => {
     const descriptionText = isLogin ? 'Need an account?' : 'Have an account?'
     const [{ response, isLoading, error }, doFetch] = useFetch(urlApi);
     const [, setToken] = useLocalStorage('token');
-    const [, dispatch] = useContext(CurrentUserContext);
-
-
+    const [{ isLoggedIn }, dispatch] = useContext(CurrentUserContext);
 
     const handleSubmit = e => {
         e.preventDefault();
-        setIsResponse(false)
         const user = isLogin ? { email, password } : { username, email, password }
         doFetch({
             method: 'post',
@@ -35,22 +32,20 @@ const Authentication = () => {
             }
         })
     }
+
     useEffect(() => {
         if (!response) {
             return
         }
         setToken(response.user.token)
-        setIsResponse(true)
         dispatch({ type: 'SET_AUTHORIZED', payload: response.user })
     }, [response, setToken, dispatch])
 
     useEffect(() => {
-        if (isResponse) {
+        if (isLoggedIn) {
             return navigate("/");
         }
-    }, [isResponse, navigate])
-
-
+    }, [isLoggedIn, navigate])
 
     return (
         <div className="auth-page">
@@ -70,7 +65,7 @@ const Authentication = () => {
                                         type="username"
                                         placeholder="Username"
                                         value={username}
-                                        onChange={({ target: { value } }) => setUsername(value)}
+                                        onChange={stateSetter(setUsername)}
                                     />
                                 </fieldset>)}
                                 <fieldset className="form-group">
@@ -79,7 +74,7 @@ const Authentication = () => {
                                         type="email"
                                         placeholder="Email"
                                         value={email}
-                                        onChange={({ target: { value } }) => setEmail(value)}
+                                        onChange={stateSetter(setEmail)}
                                     />
                                 </fieldset>
                                 <fieldset className="form-group">
@@ -89,7 +84,7 @@ const Authentication = () => {
                                         placeholder="Password"
                                         value={password}
                                         autoComplete="on"
-                                        onChange={({ target: { value } }) => setPassword(value)}
+                                        onChange={stateSetter(setPassword)}
                                     />
                                 </fieldset>
                                 <button disabled={isLoading} className=" btn btn-primary btn-lg pull-xs-right offset-lg-4">{pageTitle}</button>
