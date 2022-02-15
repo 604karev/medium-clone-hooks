@@ -9,7 +9,7 @@ const EditArticle = () => {
     const navigate = useNavigate();
 
     const apiUrl = `/articles/${slug}`;
-    const [CurrentUserState] = useContext(CurrentUserContext)
+    const [currentUser] = useContext(CurrentUserContext)
     const [{
         response: fetchArticleResponse }
         , doFetchArticle] = useFetch(apiUrl)
@@ -53,11 +53,11 @@ const EditArticle = () => {
     }, [updateArticleResponse, navigate])
 
     useEffect(() => {
-        if (CurrentUserState.isLoggedIn === false) {
+        if (currentUser.isLoggedIn === false) {
             return navigate('/')
         }
 
-    }, [CurrentUserState, navigate])
+    }, [currentUser, navigate])
 
     return (
         <ArticleForm

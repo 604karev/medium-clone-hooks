@@ -8,7 +8,7 @@ const CreateArticle = () => {
     const navigate = useNavigate();
     const apiUrl = '/articles';
     const [{ response, error }, doFetch] = useFetch(apiUrl)
-    const [CurrentUserState] = useContext(CurrentUserContext)
+    const [currentUser] = useContext(CurrentUserContext)
 
     const initialState = {
         title: '',
@@ -32,11 +32,11 @@ const CreateArticle = () => {
     }, [response, navigate])
 
     useEffect(() => {
-        if (CurrentUserState.isLoggedIn===false) {
+        if (currentUser.isLoggedIn===false) {
             return navigate('/')
         }        
 
-    }, [CurrentUserState, navigate])
+    }, [currentUser, navigate])
 
 
 

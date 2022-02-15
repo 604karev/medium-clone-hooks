@@ -38,6 +38,10 @@ const TopBar = () => {
                                         <i className="ion-compose" /> &nbsp; New Post</NavLink>
                                 </li>
                                 <li className="nav-item">
+                                    <NavLink className={`nav-link`} to={'/settings'} >
+                                        <i className="ion-gear-a" /> &nbsp; Settings</NavLink>
+                                </li>
+                                <li className="nav-item">
                                     <NavLink className={`nav-link`} to={`/profiles/${currentUser.username}`} >
                                         <img className="user-pic" src={currentUser.image} alt={currentUser.username} />
                                         &nbsp;{currentUser.username}
