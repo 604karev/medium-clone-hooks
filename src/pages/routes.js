@@ -7,6 +7,7 @@ import CreateArticle from "./createArticle";
 import EditArticle from "./editArticle";
 import Settings from "./settings";
 import UserProfile from "./userProfile";
+import { NotFoundPage } from "pages/notFoundPage";
 
 const Router = () => (
     <Routes>
@@ -23,7 +24,8 @@ const Router = () => (
         <Route path='/article/new' element={<CreateArticle />} />
         <Route path='/article/:slug/edit' element={<EditArticle />} />
         <Route path='/profiles/:slug' element={<UserProfile />} />
-        <Route path='/profiles/:slug/favorites' element={<UserProfile />} />     
+        <Route path='/profiles/:slug/favorites' element={<UserProfile />} />
+        <Route path="*" element={<NotFoundPage />} />
     </Routes >
 )
 export default Router
