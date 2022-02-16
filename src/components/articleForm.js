@@ -63,7 +63,8 @@ const ArticleForm = ({ onSubmit, error, initialState }) => {
                                         placeholder="Write you article (in markdown)"
                                         type="text"
                                         value={body}
-                                        onChange={stateSetter(setBody)} />
+                                        onChange={stateSetter(setBody)}
+                                    />
                                 </fieldset>
                                 <fieldset className=" form-group">
                                     <input

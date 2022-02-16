@@ -15,3 +15,8 @@
 .btn+.btn {
     margin-left: 1rem;
 }
+.btn-primary {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #5cb85c;
+}
