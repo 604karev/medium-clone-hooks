@@ -6,6 +6,7 @@ import Authentication from './authentication'
 import CreateArticle from "./createArticle";
 import EditArticle from "./editArticle";
 import Settings from "./settings";
+import UserProfile from "./userProfile";
 
 const Router = () => (
     <Routes>
@@ -18,10 +19,11 @@ const Router = () => (
         <Route path='/login' element={<Authentication />} />
         <Route path='/settings' element={<Settings />} />
         <Route path='/register' element={<Authentication />} />
-        <Route path='/article' element={<GlobalFeed />} />
         <Route path='/article/:slug' element={<Article />} />
         <Route path='/article/new' element={<CreateArticle />} />
         <Route path='/article/:slug/edit' element={<EditArticle />} />
+        <Route path='/profiles/:slug' element={<UserProfile />} />
+        <Route path='/profiles/:slug/favorites' element={<UserProfile />} />     
     </Routes >
 )
 export default Router
