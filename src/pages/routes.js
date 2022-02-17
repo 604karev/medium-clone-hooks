@@ -25,7 +25,7 @@ const Router = () => (
         <Route path='/article/:slug/edit' element={<EditArticle />} />
         <Route path='/profiles/:slug' element={<UserProfile />} />
         <Route path='/profiles/:slug/favorites' element={<UserProfile />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/*" element={<NotFoundPage />} />
     </Routes >
 )
 export default Router
