@@ -1,4 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Production build:
+https://604karev.github.io/medium-clone-hooks/build/
+
+
 
 ## Available Scripts
 
