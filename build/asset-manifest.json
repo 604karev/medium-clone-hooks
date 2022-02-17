@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.0a0bae09.css",
-    "main.js": "/static/js/main.d9799976.js",
-    "index.html": "/index.html",
-    "main.0a0bae09.css.map": "/static/css/main.0a0bae09.css.map",
-    "main.d9799976.js.map": "/static/js/main.d9799976.js.map"
+    "main.css": "/medium-clone-hooks/build/static/css/main.0a0bae09.css",
+    "main.js": "/medium-clone-hooks/build/static/js/main.ac519de8.js",
+    "index.html": "/medium-clone-hooks/build/index.html",
+    "main.0a0bae09.css.map": "/medium-clone-hooks/build/static/css/main.0a0bae09.css.map",
+    "main.ac519de8.js.map": "/medium-clone-hooks/build/static/js/main.ac519de8.js.map"
   },
   "entrypoints": [
-    "static/css/main.0a0bae09.css",
-    "static/js/main.d9799976.js"
+    "medium-clone-hooks/builds/tatic/css/main.0a0bae09.css",
+    "medium-clone-hooks/build/static/js/main.ac519de8.js"
   ]
 }
