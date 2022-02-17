@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import { useParams, useLocation, NavLink } from "react-router-dom";
 import { useFetch } from "hooks/useFetch";
 import { Loading } from "components/loading";
+import UserArticles from "components/userArticles";
 
 const UserProfile = () => {
     const { slug } = useParams();
-    const { pathname } = useLocation();
-    const isFavorites = pathname.includes('/favotites');
-    const apiUrl = isFavorites ? `/profiles/${slug}/favotites` : `/profiles/${slug}`;
+    const { pathname, search } = useLocation();
+    const isFavorites = pathname.includes('/favorites');
+    const apiUrl = `/profiles/${slug}`;
     const [{ response, isLoading }, doFetch] = useFetch(apiUrl);
 
     useEffect(() => {
@@ -15,7 +16,7 @@ const UserProfile = () => {
     }, [doFetch, slug])
 
     return (
-        isLoading ? <Loading /> : response && (
+        isLoading ? <div className="text-xs-center"> <Loading /></div> : response && (
             <div className="profile-page">
                 <div className="user-info">
                     <div className="container">
@@ -41,6 +42,12 @@ const UserProfile = () => {
                                     </li>
                                 </ul>
                             </div>
+                            <UserArticles
+                                username={response.profile.username}
+                                search={search}
+                                isFavorites={isFavorites}
+                                pathname={pathname}
+                            />
                         </div>
                     </div>
                 </div>

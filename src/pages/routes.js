@@ -11,7 +11,7 @@ import { NotFoundPage } from "pages/notFoundPage";
 
 const Router = () => (
     <Routes>
-        <Route path='/' element={<GlobalFeed />} >
+        <Route path='/' element={<GlobalFeed />}>
             <Route path='tags' element={<GlobalFeed />} >
                 <Route path=':tag' element={<GlobalFeed />} />
             </Route>

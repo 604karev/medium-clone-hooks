@@ -18,6 +18,7 @@ export const useFetch = (url) => {
     }, [])
 
     useEffect(() => {
+        let isSubscribed = true
         const requestOptions = {
             ...options,
             ...{
@@ -30,18 +31,20 @@ export const useFetch = (url) => {
         if (!isLoading) {
             return
         }
-        const res = axios(baseUrl + url, requestOptions)
+        axios(baseUrl + url, requestOptions)
             .then(res => {
-                console.log(res)
-                setIsSubmitting(false)
-                setResponse(res.data)
+                if (isSubscribed) {
+                    setIsSubmitting(false)
+                    setResponse(res.data)
+                }
             })
             .catch(error => {
-                setIsSubmitting(false)
-                setError(error.response.data)
-
+                if (isSubscribed) {
+                    setIsSubmitting(false)
+                    setError(error.response.data)
+                }
             })
-        return res
+        return () => isSubscribed = false
     }, [isLoading, url, options, token])
 
     return [{ isLoading, response, error }, doFetch]
