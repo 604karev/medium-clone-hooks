@@ -12,7 +12,7 @@ const App = () => {
     return (
         <CurrentUserProvider>
             <CurrentUserChecker>
-                <BrowserRouter>
+                <BrowserRouter basename='/medium-clone-hooks/build/'>
                     <TopBar />
                     <Router />
                 </BrowserRouter>

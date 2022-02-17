@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/medium-clone-hooks/build/static/css/main.0a0bae09.css",
-    "main.js": "/medium-clone-hooks/build/static/js/main.ac519de8.js",
-    "index.html": "/medium-clone-hooks/build/index.html",
-    "main.0a0bae09.css.map": "/medium-clone-hooks/build/static/css/main.0a0bae09.css.map",
-    "main.ac519de8.js.map": "/medium-clone-hooks/build/static/js/main.ac519de8.js.map"
+    "main.css": "https://604karev.github.io/medium-clone-hooks/build/static/css/main.0a0bae09.css",
+    "main.js": "https://604karev.github.io/medium-clone-hooks/build/static/js/main.a127a3c3.js",
+    "index.html": "https://604karev.github.io/medium-clone-hooks/build/index.html",
+    "main.0a0bae09.css.map": "https://604karev.github.io/medium-clone-hooks/build/static/css/main.0a0bae09.css.map",
+    "main.a127a3c3.js.map": "https://604karev.github.io/medium-clone-hooks/build/static/js/main.a127a3c3.js.map"
   },
   "entrypoints": [
-    "medium-clone-hooks/builds/tatic/css/main.0a0bae09.css",
-    "medium-clone-hooks/build/static/js/main.ac519de8.js"
+    "static/css/main.0a0bae09.css",
+    "static/js/main.a127a3c3.js"
   ]
 }
