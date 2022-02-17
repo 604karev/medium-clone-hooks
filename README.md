@@ -1,5 +1,5 @@
 # Production build:
-[https://604karev.github.io/medium-clone-hooks/build]https://604karev.github.io/medium-clone-hooks/build
+[https://604karev.github.io/medium-clone-hooks/build](https://604karev.github.io/medium-clone-hooks/build)
 
 
 ## Available Scripts
